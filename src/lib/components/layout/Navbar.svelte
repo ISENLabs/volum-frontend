@@ -8,7 +8,9 @@
 		<div class="flex justify-between h-16">
 			<div class="flex">
 				<div class="flex-shrink-0 flex items-center">
-					<img class="h-8 w-auto" src="/images/logo.svg" alt="Volum" />
+					<a href="/">
+						<img class="h-8 w-auto" src="/images/logo.svg" alt="Volum" />
+					</a>
 				</div>
 				<div class="hidden sm:ml-6 sm:flex sm:space-x-8">
 					<a
