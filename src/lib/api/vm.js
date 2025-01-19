@@ -15,7 +15,7 @@ export async function getVM(id) {
 
 // create new vm
 export async function createVM(data) {
-    const response = await client.post('/vms/create', data);
+    const response = await client.post('/vms', data);
     return response.data;
 }
 
@@ -33,6 +33,6 @@ export async function stopVM(id) {
 
 // delete vm
 export async function deleteVM(id) {
-    const response = await client.delete(`/vms/${id}`);
+    const response = await client.post(`/vms/${id}`, '{"delete":true}');
     return response.data;
 }

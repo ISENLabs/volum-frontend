@@ -12,13 +12,17 @@
 	};
 	let password = '';
 	let showPassword = false;
+	let copied = false;
 
 	async function handleSubmit() {
 		try {
 			loading = true;
 			error = null;
 			const result = await createVM(form);
-			password = result.data.password;
+			if(!result.success) {
+				throw new Error(result.error);
+			}
+			password = result.data[0].password;
 			showPassword = true;
 		} catch (err) {
 			error = err.message;
@@ -30,6 +34,8 @@
 	function handleClose() {
 		if (!loading) {
 			dispatch('close');
+			// reload page
+			location.reload();
 		}
 	}
 </script>
@@ -51,7 +57,34 @@
 
 				<div class="bg-gray-50 rounded-md p-4">
 					<p class="text-sm font-medium text-gray-700">Mot de passe :</p>
-					<p class="font-mono mt-1 text-sm">{password}</p>
+					<div class="relative">
+						<button 
+							type="button"
+							class="font-mono mt-1 text-sm cursor-pointer hover:bg-gray-200 p-1 rounded w-full text-left flex justify-between items-center group"
+							on:click={() => {
+								navigator.clipboard.writeText(password);
+								copied = true;
+								setTimeout(() => copied = false, 2000);
+							}}
+							on:keydown={(e) => {
+								if (e.key === 'Enter') {
+									navigator.clipboard.writeText(password);
+									copied = true;
+									setTimeout(() => copied = false, 2000);
+								}
+							}}
+							title="Cliquer pour copier"
+						>
+							<span>{password}</span>
+							<svg class="w-4 h-4 text-gray-400 group-hover:text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								{#if copied}
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+								{:else}
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+								{/if}
+							</svg>
+						</button>
+					</div>
 				</div>
 
 				<button

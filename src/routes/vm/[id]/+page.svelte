@@ -15,7 +15,9 @@
 	onMount(async () => {
 		try {
 			const response = await getVM(vmId);
-			vm = response.data[0];
+			if(response.data.length > 0)
+				vm = response.data[0];
+			loading = false;
 		} catch (err) {
 			error = err.message;
 		} finally {
@@ -81,7 +83,7 @@
 					</div>
 					<span
 						class={`px-3 py-1 text-sm rounded-full ${
-							vm.status === 'online' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
+							vm.status === 'running' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'
 						}`}
 					>
 						{vm.status}

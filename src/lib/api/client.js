@@ -3,8 +3,13 @@ import { auth } from '$lib/stores/auth';
 
 const client = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
-    withCredentials: true, // To send cookies too
-    timeout: 5000
+    withCredentials: false,
+    timeout: 5000,
+    headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Auth-Token': typeof window !== 'undefined' ? document.cookie.split('; ').find(row => row.startsWith('paresseux-auth-token='))?.split('=')[1] || '' : ''
+    }
 });
 
 // Interceptor to handle errors

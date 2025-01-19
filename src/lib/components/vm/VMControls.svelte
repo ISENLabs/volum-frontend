@@ -71,7 +71,7 @@
                     </div>
                     <div>
                         <span class="text-sm text-gray-500">SSH:</span>
-                        <code class="ml-2 text-sm bg-gray-100 px-2 py-1 rounded">ssh {vm.vm_id}-root@{import.meta.env.VITE_SSH_IP}</code>
+                        <code class="ml-2 text-sm bg-gray-100 px-2 py-1 rounded">ssh {vm.vmid}-root@{import.meta.env.VITE_SSH_IP}</code>
                     </div>
                 </div>
             </div>
