@@ -35,7 +35,7 @@
 		{#if !$auth.user?.is_admin && vms.length === 0}
 			<button
 				on:click={() => (showCreateModal = true)}
-				class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+				class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
 			>
 				Créer une VM
 			</button>
@@ -58,7 +58,7 @@
 				<div class="mt-6">
 					<button
 						on:click={() => (showCreateModal = true)}
-						class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+						class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
 					>
 						Créer une VM
 					</button>
