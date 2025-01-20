@@ -59,10 +59,10 @@
 				<dt class="text-sm font-medium text-gray-500 truncate">Réseau</dt>
 				<dd class="mt-1">
 					<div class="text-sm text-gray-900">
-						↓ {formatBytes(vm.netin)}/s
+						↓ {formatBytes(vm.netin)}
 					</div>
 					<div class="text-sm text-gray-900">
-						↑ {formatBytes(vm.netout)}/s
+						↑ {formatBytes(vm.netout)}
 					</div>
 				</dd>
 			</div>
