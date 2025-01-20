@@ -19,13 +19,12 @@
 			loading = true;
 			error = null;
 			const result = await createVM(form);
-			if(!result.success) {
-				throw new Error(result.error);
-			}
+			console.log(result);
 			password = result.data[0].password;
 			showPassword = true;
 		} catch (err) {
 			error = err.message;
+			console.log(error);
 		} finally {
 			loading = false;
 		}
@@ -87,12 +86,24 @@
 					</div>
 				</div>
 
-				<button
-					class="mt-4 w-full inline-flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
-					on:click={handleClose}
-				>
+				{#if !copied}
+					<button
+						class="mt-4 w-full inline-flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+						on:click={handleClose}
+						disabled={!copied}
+					>
 					J'ai copié mon mot de passe
-				</button>
+					</button>
+				{:else}
+					<button
+						class="mt-4 w-full inline-flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
+						on:click={handleClose}
+						disabled={!copied}
+					>
+					J'ai copié mon mot de passe
+					</button>
+				{/if}
+				
 			</div>
 		{:else}
 			<form on:submit|preventDefault={handleSubmit} class="px-6 py-4">
