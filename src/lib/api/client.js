@@ -7,12 +7,26 @@ const client = axios.create({
     timeout: 5000,
     headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'Auth-Token': typeof window !== 'undefined' ? document.cookie.split('; ').find(row => row.startsWith('paresseux-auth-token='))?.split('=')[1] || '' : ''
+        'Accept': 'application/json'
     }
 });
 
-// Interceptor to handle errors
+// interceptor to add auth token
+client.interceptors.request.use(config => {
+    if (typeof window !== 'undefined') {
+        const cookieValue = document.cookie
+            .split('; ')
+            .find(row => row.startsWith('paresseux-auth-token='))
+            ?.split('=')[1];
+        
+        if (cookieValue) {
+            config.headers['Auth-Token'] = cookieValue;
+        }
+    }
+    return config;
+});
+
+// Interceptor pour gérer les erreurs
 client.interceptors.response.use(
     response => response,
     error => {
