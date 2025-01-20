@@ -32,7 +32,7 @@
 	<div class="flex justify-between items-center mb-6">
 		<h1 class="text-2xl font-semibold text-gray-900">Mes machines virtuelles</h1>
 
-		{#if !$auth.user?.is_admin && vms.length === 0}
+		{#if $auth.user.is_admin || !$auth.user.is_admin && vms.length === 0}
 			<button
 				on:click={() => (showCreateModal = true)}
 				class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700"
@@ -68,7 +68,7 @@
 	{:else}
 		<div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each vms as vm (vm.vmid)}
-				<VMCard {vm} />
+				<VMCard {vm} is_admin={$auth.user.is_admin} this_user_id={$auth.user.id}/>
 			{/each}
 		</div>
 	{/if}

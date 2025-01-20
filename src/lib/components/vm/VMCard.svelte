@@ -1,12 +1,25 @@
 <script>
 	export let vm;
+	export let is_admin = false;
+	export let this_user_id = 0;
 	import { createEventDispatcher } from 'svelte';
 	const dispatch = createEventDispatcher();
 </script>
 
 <div class="bg-white shadow rounded-lg p-6">
 	<div class="flex items-center justify-between">
-		<h3 class="text-lg font-medium text-gray-900">{vm.name}</h3>
+		<div>
+			<h3 class="text-lg font-medium text-gray-900">
+				{#if is_admin && vm.owner_id == this_user_id}
+					<u>{vm.name}</u>
+				{:else}
+					{vm.name}
+				{/if}
+			</h3>
+			{#if is_admin}
+				<span>User: {vm.owner_id}</span>
+			{/if}
+		</div>
 		<span
 			class={`px-2 py-1 text-sm rounded-full ${vm.status === 'running' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}
 		>
