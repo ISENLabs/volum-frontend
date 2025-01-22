@@ -13,7 +13,9 @@
 	onMount(async () => {
 		try {
 			const response = await getVMs();
-			vms = response.data;
+			vms = response.data.sort((a, b) => {
+            	return parseInt(a.owner_id) - parseInt(b.owner_id);
+        	});
 		} catch (err) {
 			error = err.message;
 		} finally {
