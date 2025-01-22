@@ -80,6 +80,8 @@
 						<p class="mt-1 text-sm text-gray-500">
 							{vm.subdomain}
 						</p>
+						<p>{vm.owner_name} | {vm.owner_class}</p>
+						<p>{vm.owner_email}</p>
 					</div>
 					<span
 						class={`px-3 py-1 text-sm rounded-full ${
