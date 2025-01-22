@@ -27,8 +27,7 @@
 			<div class="flex items-center">
 				{#if $auth.user}
 					<span class="text-sm text-gray-700">
-						{$auth.user.firstname}
-						{$auth.user.lastname}
+						{$auth.user.name}
 					</span>
 				{/if}
 			</div>
