@@ -82,6 +82,9 @@
 						</p>
 						<p>{vm.owner_name} | {vm.owner_class}</p>
 						<p>{vm.owner_email}</p>
+					<a href={`mailto:${vm.owner_email}`} class="text-blue-500 hover:underline">
+						Contacter le propriétaire
+					</a>
 					</div>
 					<span
 						class={`px-3 py-1 text-sm rounded-full ${
