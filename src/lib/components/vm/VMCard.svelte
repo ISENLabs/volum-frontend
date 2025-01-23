@@ -17,8 +17,10 @@
 				{/if}
 			</h3>
 			{#if is_admin}
-				<span>User: {vm.owner_id}</span>
+				<span>User id: {vm.owner_id}</span>
 			{/if}
+
+			<p>{vm.owner_name} | {vm.owner_class}</p>
 		</div>
 		<span
 			class={`px-2 py-1 text-sm rounded-full ${vm.status === 'running' ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800'}`}
