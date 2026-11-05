@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { auth } from '$lib/stores/auth';
+import { getLoginUrl } from './login';
 
 const client = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -33,7 +34,7 @@ client.interceptors.response.use(
         if (error.response?.status === 403) {
             // Disconnection + redirection
             auth.reset();
-            window.location.href = import.meta.env.VITE_LOGIN_URL;
+            window.location.href = getLoginUrl();
         }
         return Promise.reject(error);
     }
